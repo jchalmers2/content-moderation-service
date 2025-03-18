@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import moderationRoutes from "./api/v1/routes/moderationRoutes";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import setupSwagger from "../config/swagger";
 
 dotenv.config();
 
@@ -25,5 +26,8 @@ app.use("/api/v1/moderation", moderationRoutes);
 app.use((req: Request, res: Response): void => {
 	res.status(404).json({ message: "Endpoint not found" });
 });
+
+// Setup Swagger
+setupSwagger(app);
 
 export default app;
